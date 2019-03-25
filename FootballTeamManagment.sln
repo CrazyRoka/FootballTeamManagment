@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api.Host", "Web.Api.Host\Web.Api.Host.csproj", "{49C17D76-7A27-4FC0-A9E8-944C75A42577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.Host", "Web.Api.Host\Web.Api.Host.csproj", "{49C17D76-7A27-4FC0-A9E8-944C75A42577}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api.Auth", "Web.Api.Auth\Web.Api.Auth.csproj", "{0F18D767-66E0-4B51-BA8B-CA870C4A67D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Core.Auth", "Web.Core.Auth\Web.Core.Auth.csproj", "{B83483F1-B952-4835-B7E2-75176F86B771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{49C17D76-7A27-4FC0-A9E8-944C75A42577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49C17D76-7A27-4FC0-A9E8-944C75A42577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49C17D76-7A27-4FC0-A9E8-944C75A42577}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F18D767-66E0-4B51-BA8B-CA870C4A67D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F18D767-66E0-4B51-BA8B-CA870C4A67D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F18D767-66E0-4B51-BA8B-CA870C4A67D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F18D767-66E0-4B51-BA8B-CA870C4A67D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B83483F1-B952-4835-B7E2-75176F86B771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B83483F1-B952-4835-B7E2-75176F86B771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B83483F1-B952-4835-B7E2-75176F86B771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B83483F1-B952-4835-B7E2-75176F86B771}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
