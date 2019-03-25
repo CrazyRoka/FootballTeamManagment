@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Web.Core.Auth.Models
+﻿namespace Web.Core.Auth.Models
 {
     public class UserRole
     {

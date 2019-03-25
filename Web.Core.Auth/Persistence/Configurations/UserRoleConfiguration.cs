@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Web.Core.Auth.Models;
 
 namespace Web.Core.Auth.Persistence.Configurations
@@ -11,6 +8,8 @@ namespace Web.Core.Auth.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
+            builder.HasKey(ur => new { ur.RoleId, ur.UserId });
+
             builder.HasOne(ur => ur.User)
                 .WithMany(u => u.UserRoles)
                 .HasForeignKey(ur => ur.UserId)

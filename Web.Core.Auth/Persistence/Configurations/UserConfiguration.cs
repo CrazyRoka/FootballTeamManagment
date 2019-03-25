@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Web.Core.Auth.Models;
 
 namespace Web.Core.Auth.Persistence.Configurations
@@ -12,6 +9,7 @@ namespace Web.Core.Auth.Persistence.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasKey(u => u.Id);
+            builder.HasIndex(u => u.Email).IsUnique();
 
             builder.Property(u => u.Email)
                 .IsRequired()
@@ -21,6 +19,14 @@ namespace Web.Core.Auth.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("PasswordHash");
+
+            builder.Property(u => u.FirstName)
+                .IsRequired()
+                .HasMaxLength(255);
+
+            builder.Property(u => u.LastName)
+                .IsRequired()
+                .HasMaxLength(255);
         }
     }
 }
