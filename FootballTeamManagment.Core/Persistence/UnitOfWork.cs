@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using FootballTeamManagment.Core.Models;
 using FootballTeamManagment.Core.Repositories;
 
 namespace FootballTeamManagment.Core.Persistence
@@ -6,14 +7,27 @@ namespace FootballTeamManagment.Core.Persistence
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-
-        public UnitOfWork(IUserRepository userRepository, ApplicationDbContext context)
+        public UnitOfWork(
+            IRepository<User> userRepository,
+            IRepository<Role> roleRepository,
+            IRepository<Team> teamRepository,
+            IRepository<FootballPlayer> footballPlayerRepository,
+            ApplicationDbContext context)
         {
             UserRepository = userRepository;
+            RoleRepository = roleRepository;
+            TeamRepository = teamRepository;
+            FootballPlayerRepository = footballPlayerRepository;
             _context = context;
         }
 
-        public IUserRepository UserRepository { get; }
+        public IRepository<User> UserRepository { get; }
+
+        public IRepository<Role> RoleRepository { get; }
+
+        public IRepository<Team> TeamRepository { get; }
+
+        public IRepository<FootballPlayer> FootballPlayerRepository { get; }
 
         public async Task SaveAsync()
         {

@@ -16,6 +16,7 @@ using FootballTeamManagment.Core.Persistence;
 using FootballTeamManagment.Core.Repositories;
 using FootballTeamManagment.Core.Security;
 using FootballTeamManagment.Core.Services;
+using FootballTeamManagment.Core.Models;
 
 namespace FootballTeamManagment.Host
 {
@@ -31,13 +32,22 @@ namespace FootballTeamManagment.Host
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Database Context
             services.AddDbContext<ApplicationDbContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IAuthentificationService, AuthentificationService>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            // Repositories and Unit Of Work
+            services.AddScoped<IRepository<User>, UserRepository>();
+            services.AddScoped<IRepository<Role>, RoleRepository>();
+            services.AddScoped<IRepository<Team>, TeamRepository>();
+            services.AddScoped<IRepository<FootballPlayer>, FootballPlayerRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            // Services
+            services.AddScoped<IAuthentificationService, AuthentificationService>();
             services.AddScoped<IUserService, UserService>();
+
+            // Helpers
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
             services.AddAutoMapper(Assembly.GetAssembly(typeof(UserMappingProfile)));
 
@@ -48,6 +58,7 @@ namespace FootballTeamManagment.Host
             var signingConfigurations = new SigningConfigurations();
             services.AddSingleton(signingConfigurations);
 
+            // Authentification
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(jwtBearerOptions =>
                 {
@@ -63,6 +74,7 @@ namespace FootballTeamManagment.Host
                     };
                 });
 
+            // Api docs
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Football Team Managment API", Version = "v1" });

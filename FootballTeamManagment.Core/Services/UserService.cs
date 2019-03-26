@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using FootballTeamManagment.Core.Models;
 using FootballTeamManagment.Core.Persistence;
 using FootballTeamManagment.Core.Security;
@@ -23,13 +24,26 @@ namespace FootballTeamManagment.Core.Services
                 return null;
             }
 
-            user.Password = _passwordHasher.HashPassword(user.Password);
+            await ConfigureUser(user, roles);
 
-            await _unitOfWork.UserRepository.AddAsync(user, roles);
+            await _unitOfWork.UserRepository.AddAsync(user);
             await _unitOfWork.SaveAsync();
 
             user.Password = null;
             return user;
+        }
+
+        private async Task ConfigureUser(User user, ApplicationRole[] appRoles)
+        {
+            user.Password = _passwordHasher.HashPassword(user.Password);
+
+            var roles = await _unitOfWork.RoleRepository
+                            .GetAllAsync(r => appRoles.Any(ar => ar.ToString() == r.Name));
+
+            foreach (var role in roles)
+            {
+                user.UserRoles.Add(new UserRole { RoleId = role.Id });
+            }
         }
 
         private async Task<User> FindByEmailAsync(string email) =>

@@ -10,39 +10,20 @@ using FootballTeamManagment.Core.Persistence;
 
 namespace FootballTeamManagment.Core.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : AbstractRepository<User>
     {
-        private readonly ApplicationDbContext _context;
-
-        public UserRepository(ApplicationDbContext context)
+        public UserRepository(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
 
-        public async Task AddAsync(User user, ApplicationRole[] appRoles)
-        {
-            var roles = await _context.Roles.Where(r =>
-                appRoles.Any(ar => ar.ToString() == r.Name)).ToListAsync();
-
-            foreach(var role in roles)
-            {
-                user.UserRoles.Add(new UserRole { RoleId = role.Id });
-            }
-
-            _context.Users.Add(user);
-        }
-
-        public async Task<User> FindAsync(Expression<Func<User, bool>> condition) =>
+        public override async Task<User> FindAsync(Expression<Func<User, bool>> condition) =>
             await UsersWithRoles.SingleOrDefaultAsync(condition);
 
-        public async Task<IEnumerable<User>> GetAllAsync(Expression<Func<User, bool>> condition) =>
+        public override async Task<IEnumerable<User>> GetAllAsync(Expression<Func<User, bool>> condition) =>
             await UsersWithRoles.Where(condition).ToListAsync();
 
-        public Task<IEnumerable<User>> GetAllAsync() => GetAllAsync((_) => true);
-
-        public void Remove(User user) => _context.Users.Remove(user);
-
-        public void Update(User user) => _context.Users.Update(user);
+        public override async Task<IEnumerable<User>> GetAllAsync() =>
+            await UsersWithRoles.ToListAsync();
 
         private IIncludableQueryable<User, Role> UsersWithRoles =>
             _context.Users.Include(u => u.UserRoles).ThenInclude(ur => ur.Role);
