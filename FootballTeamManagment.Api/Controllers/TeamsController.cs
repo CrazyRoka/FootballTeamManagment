@@ -12,59 +12,70 @@ namespace FootballTeamManagment.Api.Controllers
     [Route("/api/v1/[controller]")]
     public class TeamsController : Controller
     {
-        private readonly ITeamService _teamService;
+        private readonly IEntityService<Team> _service;
         private readonly IMapper _mapper;
-        public TeamsController(ITeamService teamService, IMapper mapper)
+        public TeamsController(IEntityService<Team> service, IMapper mapper)
         {
-            _teamService = teamService;
+            _service = service;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Team>> Index()
+        public async Task<IEnumerable<TeamView>> Index()
         {
-            return await _teamService.GetAllAsync();
+            var teams = await _service.GetAllAsync();
+            var view = _mapper.Map<IEnumerable<TeamView>>(teams);
+            return view;
         }
 
         [HttpGet("{id}", Name = "TeamLink")]
         public async Task<IActionResult> Details(int id)
         {
-            var team = await _teamService.GetAsync(id);
+            var team = await _service.GetAsync(id);
             if(team == null)
             {
                 return NotFound();
             }
-            return Ok(team);
+            var view = _mapper.Map<TeamView>(team);
+            return Ok(view);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(TeamInput teamInput)
+        public async Task<IActionResult> Create([FromBody]TeamView teamInput)
         {
             var team = _mapper.Map<Team>(teamInput);
-            var createdTeam = await _teamService.CreateAsync(team);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var createdTeam = await _service.CreateAsync(team);
             if(createdTeam == null)
             {
-                return BadRequest(new { message = "Name already exist" });
+                return BadRequest(new { message = "Can't create" });
             }
+
+            var view = _mapper.Map<TeamView>(createdTeam);
             return CreatedAtRoute(
                 routeName: "TeamLink",
-                routeValues: new { id = createdTeam.Id },
-                value: createdTeam );
+                routeValues: new { id = view.Id },
+                value: view );
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(int id, TeamInput teamInput)
+        public async Task<IActionResult> Edit(int id, [FromBody]TeamView teamView)
         {
             if (ModelState.IsValid)
             {
-                var team = _mapper.Map<Team>(teamInput);
+                var team = _mapper.Map<Team>(teamView);
                 team.Id = id;
-                team = await _teamService.UpdateAsync(team);
+                team = await _service.UpdateAsync(team);
                 if(team == null)
                 {
                     return BadRequest("Can't update");
                 }
-                return Ok(team);
+                var view = _mapper.Map<TeamView>(team);
+                return Ok(view);
             }
             return BadRequest(ModelState);
         }
@@ -72,7 +83,7 @@ namespace FootballTeamManagment.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _teamService.RemoveAsync(id);
+            await _service.RemoveAsync(id);
             return NoContent();
         }
     }

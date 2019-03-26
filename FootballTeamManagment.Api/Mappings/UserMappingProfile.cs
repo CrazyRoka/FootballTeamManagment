@@ -11,7 +11,6 @@ namespace FootballTeamManagment.Api.Mappings
             CreateMap<UserView, User>()
                 .ForMember(u => u.Id, opt => opt.Ignore())
                 .ForMember(u => u.UserRoles, opt => opt.Ignore());
-
             CreateMap<User, UserView>();
         }
     }

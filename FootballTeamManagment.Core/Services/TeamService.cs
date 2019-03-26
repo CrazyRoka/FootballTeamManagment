@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FootballTeamManagment.Core.Services
 {
-    public class TeamService : ITeamService
+    public class TeamService : IEntityService<Team>
     {
         private readonly IUnitOfWork _unitOfWork;
         public TeamService(IUnitOfWork unitOfWork)
@@ -16,8 +16,15 @@ namespace FootballTeamManagment.Core.Services
 
         public async Task<Team> CreateAsync(Team team)
         {
-            await _unitOfWork.TeamRepository.AddAsync(team);
-            await _unitOfWork.SaveAsync();
+            try
+            {
+                await _unitOfWork.TeamRepository.AddAsync(team);
+                await _unitOfWork.SaveAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                return null;
+            }
             return team;
         }
 

@@ -8,10 +8,10 @@ namespace FootballTeamManagment.Api.Mappings
     {
         public TeamMappingProfile()
         {
-            CreateMap<TeamInput, Team>()
+            CreateMap<TeamView, Team>()
                 .ForMember(t => t.FootballPlayers, opt => opt.Ignore())
                 .ForMember(t => t.Id, opt => opt.Ignore());
-            CreateMap<Team, TeamInput>();
+            CreateMap<Team, TeamView>();
         }
     }
 }
