@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.Host", "Web.Api.Host\Web.Api.Host.csproj", "{49C17D76-7A27-4FC0-A9E8-944C75A42577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballTeamManagment.Host", "FootballTeamManagment.Host\FootballTeamManagment.Host.csproj", "{49C17D76-7A27-4FC0-A9E8-944C75A42577}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Core.Auth", "Web.Core.Auth\Web.Core.Auth.csproj", "{B83483F1-B952-4835-B7E2-75176F86B771}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballTeamManagment.Core", "FootballTeamManagment.Core\FootballTeamManagment.Core.csproj", "{B83483F1-B952-4835-B7E2-75176F86B771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api.Auth", "Web.Api.Auth\Web.Api.Auth.csproj", "{E4C42AAF-823A-49E5-886C-4546E33F4E3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FootballTeamManagment.Api", "FootballTeamManagment.Api\FootballTeamManagment.Api.csproj", "{E4C42AAF-823A-49E5-886C-4546E33F4E3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
