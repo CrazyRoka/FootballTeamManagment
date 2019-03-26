@@ -2370,10 +2370,10 @@
           "lib/netstandard2.0/Microsoft.Extensions.WebEncoders.dll": {}
         }
       },
-      "Microsoft.IdentityModel.JsonWebTokens/5.3.0": {
+      "Microsoft.IdentityModel.JsonWebTokens/5.4.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "5.3.0",
+          "Microsoft.IdentityModel.Tokens": "5.4.0",
           "Newtonsoft.Json": "10.0.1"
         },
         "compile": {
@@ -2383,7 +2383,7 @@
           "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Logging/5.3.0": {
+      "Microsoft.IdentityModel.Logging/5.4.0": {
         "type": "package",
         "dependencies": {
           "System.Diagnostics.Tracing": "4.3.0",
@@ -2444,10 +2444,10 @@
           "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.WsFederation.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Tokens/5.3.0": {
+      "Microsoft.IdentityModel.Tokens/5.4.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Logging": "5.3.0",
+          "Microsoft.IdentityModel.Logging": "5.4.0",
           "Newtonsoft.Json": "10.0.1",
           "System.Collections": "4.3.0",
           "System.Diagnostics.Tools": "4.3.0",
@@ -2987,6 +2987,63 @@
           }
         }
       },
+      "Swashbuckle.AspNetCore/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Swashbuckle.AspNetCore.Swagger": "4.0.1",
+          "Swashbuckle.AspNetCore.SwaggerGen": "4.0.1",
+          "Swashbuckle.AspNetCore.SwaggerUI": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Swashbuckle.AspNetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Swashbuckle.AspNetCore.dll": {}
+        }
+      },
+      "Swashbuckle.AspNetCore.Swagger/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Core": "2.0.0",
+          "Microsoft.AspNetCore.Mvc.Formatters.Json": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.dll": {}
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerGen/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.ApiExplorer": "2.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.0.0",
+          "Microsoft.AspNetCore.Mvc.DataAnnotations": "2.0.0",
+          "Swashbuckle.AspNetCore.Swagger": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerUI/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Routing": "2.0.0",
+          "Microsoft.AspNetCore.StaticFiles": "2.0.0",
+          "Microsoft.Extensions.FileProviders.Embedded": "2.0.0",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -3299,11 +3356,11 @@
           }
         }
       },
-      "System.IdentityModel.Tokens.Jwt/5.3.0": {
+      "System.IdentityModel.Tokens.Jwt/5.4.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.JsonWebTokens": "5.3.0",
-          "Microsoft.IdentityModel.Tokens": "5.3.0",
+          "Microsoft.IdentityModel.JsonWebTokens": "5.4.0",
+          "Microsoft.IdentityModel.Tokens": "5.4.0",
           "Newtonsoft.Json": "10.0.1"
         },
         "compile": {
@@ -4452,6 +4509,20 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
+      "Web.Api.Auth/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc": "2.2.0",
+          "Web.Core.Auth": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Web.Api.Auth.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Web.Api.Auth.dll": {}
+        }
+      },
       "Web.Core.Auth/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -4459,7 +4530,8 @@
           "Microsoft.EntityFrameworkCore": "2.2.3",
           "Microsoft.EntityFrameworkCore.Design": "2.2.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.3",
-          "Microsoft.EntityFrameworkCore.Tools.DotNet": "2.0.3"
+          "Microsoft.EntityFrameworkCore.Tools.DotNet": "2.0.3",
+          "System.IdentityModel.Tokens.Jwt": "5.4.0"
         },
         "compile": {
           "bin/placeholder/Web.Core.Auth.dll": {}
@@ -6631,12 +6703,11 @@
         "microsoft.extensions.webencoders.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.JsonWebTokens/5.3.0": {
-      "sha512": "GmiwCJPEe+V8+2GO3kD8K0IeqNHlTL0xZcHePIjyJveRn7OderxdT32aCZeJZEvz5w2Jlyag3zdyu1zkdTJo2A==",
+    "Microsoft.IdentityModel.JsonWebTokens/5.4.0": {
+      "sha512": "WTk0k+csFrUEXvtl1BhGvAmAp3UTuGt250L7BDasTxRZN6O7bWEJ41RW11RYWZWX1W5cD+mPr2jihA745URsWw==",
       "type": "package",
-      "path": "microsoft.identitymodel.jsonwebtokens/5.3.0",
+      "path": "microsoft.identitymodel.jsonwebtokens/5.4.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/net45/Microsoft.IdentityModel.JsonWebTokens.dll",
         "lib/net45/Microsoft.IdentityModel.JsonWebTokens.pdb",
@@ -6653,16 +6724,15 @@
         "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.pdb",
         "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.xml",
-        "microsoft.identitymodel.jsonwebtokens.5.3.0.nupkg.sha512",
+        "microsoft.identitymodel.jsonwebtokens.5.4.0.nupkg.sha512",
         "microsoft.identitymodel.jsonwebtokens.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Logging/5.3.0": {
-      "sha512": "y2Hu8ypzoZbyxJiU2LQHkkCUjl5H1oAVapRbEQBbhrUe7hG2g8t+1Hb3NAhmM1SqStd71+rZR27TWv2mc6Isfw==",
+    "Microsoft.IdentityModel.Logging/5.4.0": {
+      "sha512": "Y8IN/3GDrlts6NW/ROBuniDM25px9ARbUL+IBhP40xnA99kukpePK/MWyJma82xI6oRbc+yWllZpvZKNpE+ykA==",
       "type": "package",
-      "path": "microsoft.identitymodel.logging/5.3.0",
+      "path": "microsoft.identitymodel.logging/5.4.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/net45/Microsoft.IdentityModel.Logging.dll",
         "lib/net45/Microsoft.IdentityModel.Logging.pdb",
@@ -6679,7 +6749,7 @@
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.pdb",
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.xml",
-        "microsoft.identitymodel.logging.5.3.0.nupkg.sha512",
+        "microsoft.identitymodel.logging.5.4.0.nupkg.sha512",
         "microsoft.identitymodel.logging.nuspec"
       ]
     },
@@ -6761,12 +6831,11 @@
         "microsoft.identitymodel.protocols.wsfederation.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Tokens/5.3.0": {
-      "sha512": "g+JFqRJcMv8gRdyIgaloL9Rk8iLJLGdCuLVcg84/W5vfGq9WWHF9DHmcyxO7Ac1fdm2Q3PmY/nvUhsOhB3TwXA==",
+    "Microsoft.IdentityModel.Tokens/5.4.0": {
+      "sha512": "DiKt1lXqbaA4nTsVymsKwbRJzvCv24ZRau00X7nV8NbGIcmtVHyc6s388ZZSsZpzkN4e1ODwv23t1JtZzDJMGQ==",
       "type": "package",
-      "path": "microsoft.identitymodel.tokens/5.3.0",
+      "path": "microsoft.identitymodel.tokens/5.4.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/net45/Microsoft.IdentityModel.Tokens.dll",
         "lib/net45/Microsoft.IdentityModel.Tokens.pdb",
@@ -6783,7 +6852,7 @@
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.pdb",
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
-        "microsoft.identitymodel.tokens.5.3.0.nupkg.sha512",
+        "microsoft.identitymodel.tokens.5.4.0.nupkg.sha512",
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
@@ -7694,6 +7763,53 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Swashbuckle.AspNetCore/4.0.1": {
+      "sha512": "k8TzWTpjwO+4xXsMaaAsAPAdYKyM5wuRvSP+ZmgtyXwhW45ChBVq3xdVJ8Tz+hQ0ziBZSh5p6r2dkRN6SyasVA==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore/4.0.1",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.dll",
+        "swashbuckle.aspnetcore.4.0.1.nupkg.sha512",
+        "swashbuckle.aspnetcore.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.Swagger/4.0.1": {
+      "sha512": "2+dXBiOvwjNmkMkBOqGU9ShBJXQp6+UN/Kxfk3HLxwsof9zzgRZ+3rOdjHQuYiY7t1Nl7wlCgn9HbmJyZGhdaQ==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swagger/4.0.1",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.Swagger.xml",
+        "swashbuckle.aspnetcore.swagger.4.0.1.nupkg.sha512",
+        "swashbuckle.aspnetcore.swagger.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.SwaggerGen/4.0.1": {
+      "sha512": "opm/wgG8u987ZuAUtL1E8XrJig+UbGYbFmz8VnA8Vn3AqZyQZy4k243X9egz1iWl/B6sNcgMlFyv3wkdmjJX6g==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swaggergen/4.0.1",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerGen.xml",
+        "swashbuckle.aspnetcore.swaggergen.4.0.1.nupkg.sha512",
+        "swashbuckle.aspnetcore.swaggergen.nuspec"
+      ]
+    },
+    "Swashbuckle.AspNetCore.SwaggerUI/4.0.1": {
+      "sha512": "EjPeIYSMLr5FrY4sVJiWrzIQe07Hriv8tOztJa7US88im/tO+tX70y7OJ2Cr8QYojc7IotjZSH1lD8j44DLnrQ==",
+      "type": "package",
+      "path": "swashbuckle.aspnetcore.swaggerui/4.0.1",
+      "files": [
+        ".signature.p7s",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.dll",
+        "lib/netstandard2.0/Swashbuckle.AspNetCore.SwaggerUI.xml",
+        "swashbuckle.aspnetcore.swaggerui.4.0.1.nupkg.sha512",
+        "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -8804,12 +8920,11 @@
         "system.globalization.extensions.nuspec"
       ]
     },
-    "System.IdentityModel.Tokens.Jwt/5.3.0": {
-      "sha512": "PZT7Vf5b3jlwFgQnTV93tKeoLQj/Qfo/tKWHZXCprUj2ZNeyPxp47IhwCqqFcuAtuTX5FOk3dRHk8gC+KjpmGA==",
+    "System.IdentityModel.Tokens.Jwt/5.4.0": {
+      "sha512": "juMUUwWFVe6zmxyFyS44G1nkYTjDCMGOD+Ij7R5EQ3ILxOdN0AwResmg5blZClDkqp+D2kMjzMln2KeMJnAgJQ==",
       "type": "package",
-      "path": "system.identitymodel.tokens.jwt/5.3.0",
+      "path": "system.identitymodel.tokens.jwt/5.4.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/net45/System.IdentityModel.Tokens.Jwt.dll",
         "lib/net45/System.IdentityModel.Tokens.Jwt.pdb",
@@ -8826,7 +8941,7 @@
         "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll",
         "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.pdb",
         "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.xml",
-        "system.identitymodel.tokens.jwt.5.3.0.nupkg.sha512",
+        "system.identitymodel.tokens.jwt.5.4.0.nupkg.sha512",
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
@@ -12102,6 +12217,11 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
+    "Web.Api.Auth/1.0.0": {
+      "type": "project",
+      "path": "../Web.Api.Auth/Web.Api.Auth.csproj",
+      "msbuildProject": "../Web.Api.Auth/Web.Api.Auth.csproj"
+    },
     "Web.Core.Auth/1.0.0": {
       "type": "project",
       "path": "../Web.Core.Auth/Web.Core.Auth.csproj",
@@ -12113,7 +12233,8 @@
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
-      "Web.Core.Auth >= 1.0.0"
+      "Swashbuckle.AspNetCore >= 4.0.1",
+      "Web.Api.Auth >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -12146,8 +12267,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\Roka\\source\\repos\\FootballTeamManagment\\Web.Core.Auth\\Web.Core.Auth.csproj": {
-              "projectPath": "C:\\Users\\Roka\\source\\repos\\FootballTeamManagment\\Web.Core.Auth\\Web.Core.Auth.csproj"
+            "C:\\Users\\Roka\\source\\repos\\FootballTeamManagment\\Web.Api.Auth\\Web.Api.Auth.csproj": {
+              "projectPath": "C:\\Users\\Roka\\source\\repos\\FootballTeamManagment\\Web.Api.Auth\\Web.Api.Auth.csproj"
             }
           }
         }
@@ -12177,6 +12298,10 @@
             "target": "Package",
             "version": "[2.2.0, )",
             "autoReferenced": true
+          },
+          "Swashbuckle.AspNetCore": {
+            "target": "Package",
+            "version": "[4.0.1, )"
           }
         },
         "imports": [

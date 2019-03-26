@@ -1,10 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
+using System;
 using Web.Core.Auth.Persistence;
+using Web.Core.Auth.Repositories;
+using Web.Core.Auth.Security;
+using Web.Core.Auth.Services;
 
 namespace Web.Api.Host
 {
@@ -23,6 +30,37 @@ namespace Web.Api.Host
             services.AddDbContext<ApplicationDbContext>(opt =>
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<IAuthentificationService, AuthentificationService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.Configure<TokenOptions>(Configuration.GetSection("TokenOptions"));
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            services.AddSingleton(tokenOptions);
+
+            var signingConfigurations = new SigningConfigurations();
+            services.AddSingleton(signingConfigurations);
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(jwtBearerOptions =>
+                {
+                    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = tokenOptions.Issuer,
+                        ValidAudience = tokenOptions.Audience,
+                        IssuerSigningKey = signingConfigurations.Key,
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Football Team Managment API", Version = "v1" });
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -40,15 +78,23 @@ namespace Web.Api.Host
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Football Team Managment API V1");
+            });
+
             app.UseHttpsRedirection();
             app.UseMvc();
         }
 
         private void InitializeDatabase(IApplicationBuilder app)
         {
-            using(var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            using(var scope = app.ApplicationServices.CreateScope())
             {
-                scope.ServiceProvider.GetRequiredService<ApplicationDbContext>().Database.Migrate();
+                var services = scope.ServiceProvider;
+
+                ApplicationDatabaseSeed.Seed(services.GetService<ApplicationDbContext>());
             }
         }
     }
