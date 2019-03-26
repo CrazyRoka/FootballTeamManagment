@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using FootballTeamManagment.Core.Models;
 using FootballTeamManagment.Core.Services;
 using FootballTeamManagment.Api.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace FootballTeamManagment.Auth.Controllers
 {
@@ -36,6 +39,24 @@ namespace FootballTeamManagment.Auth.Controllers
                 return Ok(createdUserView);
             }
 
+            return BadRequest(ModelState);
+        }
+
+        [HttpPut()]
+        [Authorize]
+        [Route("/password")]
+        public async Task<IActionResult> UpdatePassword([FromBody]ResetPasswordRequest request)
+        {
+            var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (ModelState.IsValid)
+            {
+                bool updated = await _userService.UpdatePasswordAsync(email, request.OldPassword, request.NewPassword);
+                if (updated)
+                {
+                    return Ok();
+                }   
+                return BadRequest("Invalid password");
+            }
             return BadRequest(ModelState);
         }
     }

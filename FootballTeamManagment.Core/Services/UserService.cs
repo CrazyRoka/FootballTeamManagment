@@ -33,6 +33,22 @@ namespace FootballTeamManagment.Core.Services
             return user;
         }
 
+        public async Task<bool> UpdatePasswordAsync(string email, string oldPassword, string newPassword)
+        {
+            var existingUser = await FindByEmailAsync(email);
+            if (existingUser == null || !_passwordHasher.PasswordMatches(oldPassword, existingUser.Password))
+            {
+                return false;
+            }
+
+            existingUser.Password = _passwordHasher.HashPassword(newPassword);
+
+            _unitOfWork.UserRepository.Update(existingUser);
+            await _unitOfWork.SaveAsync();
+
+            return true;
+        }
+
         private async Task ConfigureUser(User user, ApplicationRole[] appRoles)
         {
             user.Password = _passwordHasher.HashPassword(user.Password);
