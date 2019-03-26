@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
+using System.Collections.Generic;
 using Web.Core.Auth.Persistence;
 using Web.Core.Auth.Repositories;
 using Web.Core.Auth.Security;
@@ -59,6 +60,19 @@ namespace Web.Api.Host
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "Football Team Managment API", Version = "v1" });
+                var security = new Dictionary<string, IEnumerable<string>>
+                {
+                    {"Bearer", new string[] { }},
+                };
+
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
+                c.AddSecurityRequirement(security);
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -84,6 +98,7 @@ namespace Web.Api.Host
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Football Team Managment API V1");
             });
 
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
