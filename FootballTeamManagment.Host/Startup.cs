@@ -46,6 +46,7 @@ namespace FootballTeamManagment.Host
             // Services
             services.AddScoped<IAuthentificationService, AuthentificationService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITeamService, TeamService>();
 
             // Helpers
             services.AddSingleton<IPasswordHasher, PasswordHasher>();

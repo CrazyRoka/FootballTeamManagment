@@ -9,10 +9,11 @@ namespace FootballTeamManagment.Core.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Team> builder)
         {
             builder.HasKey(t => t.Id);
+            builder.HasIndex(t => t.Name).IsUnique();
 
             builder.Property(e => e.Name)
                 .IsRequired()
-                .HasMaxLength(30);
+                .HasMaxLength(120);
         }
     }
 }

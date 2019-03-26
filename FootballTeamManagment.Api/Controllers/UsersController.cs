@@ -23,7 +23,7 @@ namespace FootballTeamManagment.Auth.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUserAsync([FromBody]UserView userView)
+        public async Task<IActionResult> Create([FromBody]UserView userView)
         {
             if (ModelState.IsValid)
             {
@@ -42,10 +42,9 @@ namespace FootballTeamManagment.Auth.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPut()]
         [Authorize]
-        [Route("/password")]
-        public async Task<IActionResult> UpdatePassword([FromBody]ResetPasswordRequest request)
+        [HttpPut("/password")]
+        public async Task<IActionResult> Update([FromBody]ResetPasswordRequest request)
         {
             var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (ModelState.IsValid)
