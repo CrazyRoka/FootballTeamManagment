@@ -2,12 +2,14 @@
 using FootballTeamManagment.Api.Models;
 using FootballTeamManagment.Core.Models;
 using FootballTeamManagment.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FootballTeamManagment.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("/api/v1/[controller]")]
     public class FootballPlayersController : Controller
@@ -21,6 +23,7 @@ namespace FootballTeamManagment.Api.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<FootballPlayerView>> Index()
         {
             var players = await _service.GetAllAsync();
@@ -80,7 +83,7 @@ namespace FootballTeamManagment.Api.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _service.RemoveAsync(id);

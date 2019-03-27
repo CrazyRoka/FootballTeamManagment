@@ -2,12 +2,14 @@
 using FootballTeamManagment.Api.Models;
 using FootballTeamManagment.Core.Models;
 using FootballTeamManagment.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace FootballTeamManagment.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("/api/v1/[controller]")]
     public class TeamsController : Controller
@@ -21,6 +23,7 @@ namespace FootballTeamManagment.Api.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<TeamView>> Index()
         {
             var teams = await _service.GetAllAsync();
