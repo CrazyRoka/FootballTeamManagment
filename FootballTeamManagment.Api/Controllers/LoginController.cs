@@ -26,7 +26,7 @@ namespace FootballTeamManagment.Auth.Controllers
                     return BadRequest(new { message = "Email or password is incorrect" });
                 }
 
-                return Ok(token);
+                return Ok(new { bearer = token });
             }
 
             return BadRequest(ModelState);
