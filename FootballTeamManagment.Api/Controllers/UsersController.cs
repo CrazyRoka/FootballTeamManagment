@@ -42,9 +42,9 @@ namespace FootballTeamManagment.Auth.Controllers
             return BadRequest(ModelState);
         }
 
-        [Authorize]
-        [HttpPut("/password")]
-        public async Task<IActionResult> Update([FromBody]ResetPasswordRequest request)
+        [HttpPut("password")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdatePassword([FromBody]ResetPasswordRequest request)
         {
             var email = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (ModelState.IsValid)
