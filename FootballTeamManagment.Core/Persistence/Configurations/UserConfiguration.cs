@@ -19,14 +19,6 @@ namespace FootballTeamManagment.Core.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(255)
                 .HasColumnName("PasswordHash");
-
-            builder.Property(u => u.FirstName)
-                .IsRequired()
-                .HasMaxLength(255);
-
-            builder.Property(u => u.LastName)
-                .IsRequired()
-                .HasMaxLength(255);
         }
     }
 }

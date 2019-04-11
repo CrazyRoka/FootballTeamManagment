@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FootballTeamManagment.Core.Repositories
 {
-    public class TeamRepository : AbstractRepository<Team>
+    public class TeamRepository : BaseRepository<Team>
     {
         public TeamRepository(ApplicationDbContext context) : base(context)
         {

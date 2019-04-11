@@ -11,12 +11,14 @@ namespace FootballTeamManagment.Core.Persistence
             IRepository<User> userRepository,
             IRepository<Role> roleRepository,
             IRepository<Team> teamRepository,
+            IRepository<Snowboard> snowboardRepository,
             IRepository<FootballPlayer> footballPlayerRepository,
             ApplicationDbContext context)
         {
             UserRepository = userRepository;
             RoleRepository = roleRepository;
             TeamRepository = teamRepository;
+            SnowboardRepository = snowboardRepository;
             FootballPlayerRepository = footballPlayerRepository;
             _context = context;
         }
@@ -26,6 +28,8 @@ namespace FootballTeamManagment.Core.Persistence
         public IRepository<Role> RoleRepository { get; }
 
         public IRepository<Team> TeamRepository { get; }
+
+        public IRepository<Snowboard> SnowboardRepository { get; }
 
         public IRepository<FootballPlayer> FootballPlayerRepository { get; }
 

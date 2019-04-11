@@ -10,7 +10,7 @@ using FootballTeamManagment.Core.Persistence;
 
 namespace FootballTeamManagment.Core.Repositories
 {
-    public class UserRepository : AbstractRepository<User>
+    public class UserRepository : BaseRepository<User>
     {
         public UserRepository(ApplicationDbContext context) : base(context)
         {

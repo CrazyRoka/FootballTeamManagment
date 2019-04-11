@@ -27,7 +27,7 @@ namespace FootballTeamManagment.Core.Services
             _passwordHasher = passwordHasher;
         }
 
-        public async Task<string> Authentificate(string email, string password)
+        public async Task<string> Authentification(string email, string password)
         {
             User user = await _unitOfWork.UserRepository.FindAsync(u => u.Email == email);
             if (user == null || !_passwordHasher.PasswordMatches(password, user.Password))

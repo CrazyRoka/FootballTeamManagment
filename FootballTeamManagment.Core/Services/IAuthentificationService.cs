@@ -4,6 +4,6 @@ namespace FootballTeamManagment.Core.Services
 {
     public interface IAuthentificationService
     {
-        Task<string> Authentificate(string email, string password);
+        Task<string> Authentification(string email, string password);
     }
 }

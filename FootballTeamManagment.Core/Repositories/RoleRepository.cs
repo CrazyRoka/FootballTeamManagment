@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FootballTeamManagment.Core.Repositories
 {
-    public class RoleRepository : AbstractRepository<Role>
+    public class RoleRepository : BaseRepository<Role>
     {
         public RoleRepository(ApplicationDbContext context) : base(context)
         {

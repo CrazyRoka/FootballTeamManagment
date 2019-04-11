@@ -20,7 +20,7 @@ namespace FootballTeamManagment.Auth.Controllers
         {
             if (ModelState.IsValid)
             {
-                string token = await _authService.Authentificate(request.Email, request.Password);
+                string token = await _authService.Authentification(request.Email, request.Password);
                 if(token == null)
                 {
                     return BadRequest(new { message = "Email or password is incorrect" });

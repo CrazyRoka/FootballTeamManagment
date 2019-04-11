@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace FootballTeamManagment.Core.Repositories
 {
-    public abstract class AbstractRepository<T> : IRepository<T> where T : class
+    public abstract class BaseRepository<T> : IRepository<T> where T : class
     {
         protected readonly ApplicationDbContext _context;
-        public AbstractRepository(ApplicationDbContext context)
+        public BaseRepository(ApplicationDbContext context)
         {
             _context = context;
         }

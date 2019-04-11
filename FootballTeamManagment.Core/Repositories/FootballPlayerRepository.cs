@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Query;
 
 namespace FootballTeamManagment.Core.Repositories
 {
-    public class FootballPlayerRepository : AbstractRepository<FootballPlayer>
+    public class FootballPlayerRepository : BaseRepository<FootballPlayer>
     {
         public FootballPlayerRepository(ApplicationDbContext context) : base(context)
         {

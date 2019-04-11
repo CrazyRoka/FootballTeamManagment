@@ -9,6 +9,7 @@ namespace FootballTeamManagment.Core.Persistence
         IRepository<User> UserRepository { get; }
         IRepository<Role> RoleRepository { get; }
         IRepository<Team> TeamRepository { get; }
+        IRepository<Snowboard> SnowboardRepository { get; }
         IRepository<FootballPlayer> FootballPlayerRepository { get; }
         Task SaveAsync();
     }

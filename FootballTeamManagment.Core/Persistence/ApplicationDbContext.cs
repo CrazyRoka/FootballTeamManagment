@@ -11,6 +11,7 @@ namespace FootballTeamManagment.Core.Persistence
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<FootballPlayer> FootballPlayers { get; set; }
+        public virtual DbSet<Snowboard> Snowboards { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -20,6 +21,7 @@ namespace FootballTeamManagment.Core.Persistence
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new UserConfiguration());
+            builder.ApplyConfiguration(new SnowboardConfiguration());
             builder.ApplyConfiguration(new RoleConfiguration());
             builder.ApplyConfiguration(new TeamConfiguration());
             builder.ApplyConfiguration(new UserRoleConfiguration());
